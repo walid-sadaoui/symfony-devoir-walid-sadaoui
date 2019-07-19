@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -26,6 +27,7 @@ class Article
      *  max = 255,
      *  minMessage = "Le titre doit faire plus de 10 caractères",
      *  maxMessage = "Le titre doit faire moins de 255 caractères"
+     * )
      */
     private $title;
 
