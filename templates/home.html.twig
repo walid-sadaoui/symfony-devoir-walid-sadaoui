@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="mt-4 jumbotron">
+            <h1 class="display-3">Bienvenue sur mon Blog</h1>
+            <hr class="my-4">
+            <p>Visitez mon site et découvrez mes articles !</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ path('articles_index' )}}" role="button">Voir mes {{ total }} articles</a>
+            </p>
+    </div>
+
+    <h2 class="h1 mt-3 mt-4">Nos produits phares</h2>    
+    <div class="row">
+        {% for article in articles|slice(0, 3) %}
+        <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="carousel-inner">
+                        {% for image in article.images %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img alt="..." class="d-block w-100" src="{{ image.url }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ article.title }}</h4>
+                        <p class="card-text">
+                            {{ article.excerpt }}
+                        </p>
+                        <div class="text-center">
+                            <a href="{{ path('articles_show', {'slug': article.slug } )}}" class="btn btn-secondary">En savoir plus</a>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
